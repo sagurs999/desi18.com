@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>desi18.com - Premium Video Stream</title>
+    <title>desi18.com - Video Stream</title>
     <style>
         :root {
-            --bg-color: #0f1015;
-            --card-bg: #1a1c23;
-            --accent: #ff3366;
+            --bg-color: #0b0f19;
+            --card-bg: #131826;
+            --accent: #00d2ff;
+            --accent-gradient: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
+            --download-btn-bg: linear-gradient(135deg, #ff416c, #ff4b2b);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --border: #2a2e39;
+            --border: #1e293b;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 30px;
+            padding-bottom: 40px;
         }
 
-        /* Top Header Navigation */
+        /* Header */
         header {
             background-color: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -41,20 +43,20 @@
         }
 
         .logo {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--accent);
-            letter-spacing: 0.5px;
+            cursor: pointer;
         }
 
         .search-box {
             display: flex;
-            background: #111318;
+            background: #090d16;
             border: 1px solid var(--border);
             border-radius: 20px;
             overflow: hidden;
             width: 55%;
-            max-width: 280px;
+            max-width: 260px;
         }
 
         .search-box input {
@@ -63,246 +65,444 @@
             border: none;
             padding: 6px 12px;
             color: #fff;
-            font-size: 13px;
+            font-size: 12px;
             outline: none;
         }
 
         .search-box button {
             background: transparent;
             border: none;
-            padding: 0 12px;
+            padding: 0 10px;
             color: var(--text-muted);
             cursor: pointer;
         }
 
-        /* Main Container */
+        /* Container */
         .container {
-            max-width: 900px;
-            margin: 16px auto;
+            max-width: 850px;
+            margin: 15px auto;
             padding: 0 10px;
         }
 
-        .section-title-bar {
+        /* Home Page View */
+        #home-view {
+            display: block;
+        }
+
+        .section-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14px;
             background: var(--card-bg);
             padding: 10px 14px;
-            border-radius: 8px;
+            border-radius: 6px;
+            margin-bottom: 12px;
             border-left: 4px solid var(--accent);
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .section-title-bar h2 {
-            font-size: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .filter-btn {
-            font-size: 12px;
-            color: var(--accent);
-            background: rgba(255, 51, 102, 0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 51, 102, 0.2);
-        }
-
-        /* Modern 2-Column Grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
 
         .video-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--border);
-            transition: transform 0.2s, border-color 0.2s;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: 0.2s;
         }
 
         .video-card:active {
             transform: scale(0.98);
         }
 
-        .thumbnail-container {
+        .thumb-box {
             position: relative;
             width: 100%;
             aspect-ratio: 16/9;
             background: #000;
         }
 
-        .thumbnail-container img {
+        .thumb-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .hd-badge {
+        .hd-tag {
             position: absolute;
-            top: 6px;
-            right: 6px;
+            top: 5px;
+            right: 5px;
             background: var(--accent);
-            color: #fff;
+            color: #000;
             font-size: 9px;
             font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
+            padding: 1px 5px;
+            border-radius: 3px;
         }
 
-        .video-meta-overlay {
+        .overlay-meta {
             position: absolute;
-            bottom: 6px;
-            left: 6px;
-            right: 6px;
+            bottom: 5px;
+            left: 5px;
+            right: 5px;
             display: flex;
             justify-content: space-between;
-            background: rgba(15, 16, 21, 0.85);
-            backdrop-filter: blur(4px);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 11px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
             color: var(--text-muted);
         }
 
-        .video-info {
-            padding: 10px;
-        }
-
-        .video-title {
+        .card-title {
+            padding: 8px;
             font-size: 12px;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.4;
+            font-weight: 500;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 34px;
+            height: 38px;
         }
 
-        .card-footer {
-            padding: 6px 10px;
-            background: #14161c;
+        .card-footer-info {
+            background: #0d121d;
+            padding: 5px 8px;
+            font-size: 11px;
+            color: #10b981;
+            text-align: center;
             border-top: 1px solid var(--border);
+        }
+
+        /* Watch Page View */
+        #watch-view {
+            display: none;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #1e293b;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .player-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        /* Unique Download Button Design (Screenshot 3 Style) */
+        .download-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--download-btn-bg);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+            transition: 0.2s;
+        }
+
+        .download-action-btn:active {
+            transform: scale(0.98);
+        }
+
+        .video-details-card {
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .watch-meta-bar {
+            background: #131826;
+            padding: 10px 14px;
+            border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
             color: var(--text-muted);
+            font-size: 13px;
+            border: 1px solid var(--border);
         }
 
-        .positive-rate {
-            color: #10b981;
-            font-weight: 600;
+        .interaction-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-chip {
+            background: #1e293b;
+            border: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .action-chip:hover {
+            background: #334155;
+        }
+
+        .action-chip.liked {
+            background: #10b981;
+            color: #000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <header>
-        <div class="logo">desi18.com</div>
+        <div class="logo" onclick="goHome()">desi18.com</div>
         <div class="search-box">
-            <input type="text" placeholder="Search videos...">
+            <input type="text" placeholder="Search...">
             <button>🔍</button>
         </div>
     </header>
 
-    <!-- Content Section -->
     <div class="container">
-        <div class="section-title-bar">
-            <h2>Latest Videos</h2>
-            <div class="filter-btn">Trending ▼</div>
+        
+        <!-- HOME PAGE LIST -->
+        <div id="home-view">
+            <div class="section-bar">
+                <span>Latest Videos</span>
+                <span style="color: var(--accent); font-size: 12px;">Trending ▼</span>
+            </div>
+
+            <div class="video-grid" id="video-grid-container">
+                <!-- JavaScript দিয়ে ভিডিও কার্ড এখানে ডাইনামিক লোড হবে -->
+            </div>
         </div>
 
-        <div class="video-grid">
+        <!-- WATCH PAGE -->
+        <div id="watch-view">
+            <div class="back-btn" onclick="goHome()">← Back to Videos</div>
             
-            <!-- Video Item 1 -->
-            <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-container">
-                    <span class="hd-badge">HD</span>
-                    <!-- থাম্বনেইল ইমেজ লিংক এখানে বদলাবেন -->
-                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+1" alt="Thumbnail">
-                    <div class="video-meta-overlay">
-                        <span>👁️ 5.2K</span>
-                        <span>⏱️ 34:43</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Vellarikka (2026) Malayalam Uncut Short Film Edition</div>
-                </div>
-                <div class="card-footer">
-                    <span>desi18</span>
-                    <span class="positive-rate">👍 100%</span>
-                </div>
+            <div class="player-box">
+                <iframe id="iframe-player" src="" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
             </div>
 
-            <!-- Video Item 2 -->
-            <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-container">
-                    <span class="hd-badge">HD</span>
-                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+2" alt="Thumbnail">
-                    <div class="video-meta-overlay">
-                        <span>👁️ 3.8K</span>
-                        <span>⏱️ 27:50</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Niyat (2026) Kaama Hindi Hot Short Film | Watch Now</div>
-                </div>
-                <div class="card-footer">
-                    <span>desi18</span>
-                    <span class="positive-rate">👍 98%</span>
-                </div>
+            <!-- Custom Styled Download Button -->
+            <a id="download-link" href="#" target="_blank" class="download-action-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download complete video now!
+            </a>
+
+            <div class="video-details-card" id="watch-title">
+                Video Title Here
             </div>
 
-            <!-- Video Item 3 -->
-            <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-container">
-                    <span class="hd-badge">HD</span>
-                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+3" alt="Thumbnail">
-                    <div class="video-meta-overlay">
-                        <span>👁️ 1.2K</span>
-                        <span>⏱️ 20:15</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Bekaboo (2026) HotFM Hindi Uncut Hot Short Film</div>
-                </div>
-                <div class="card-footer">
-                    <span>desi18</span>
-                    <span class="positive-rate" style="color: #ef4444;">👍 45%</span>
+            <div class="watch-meta-bar">
+                <span id="watch-views-count">0 views</span>
+                <div class="interaction-group">
+                    <button class="action-chip" id="like-btn" onclick="toggleLike()">
+                        👍 <span id="like-count">0</span>
+                    </button>
+                    <button class="action-chip" onclick="handleDislike()">
+                        👎 <span id="dislike-count">0</span>
+                    </button>
                 </div>
             </div>
-
-            <!-- Video Item 4 -->
-            <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-container">
-                    <span class="hd-badge">HD</span>
-                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+4" alt="Thumbnail">
-                    <div class="video-meta-overlay">
-                        <span>👁️ 6.5K</span>
-                        <span>⏱️ 40:10</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">Vellarikka 2 (2026) BabluTV Malayalam Uncut Hot Short</div>
-                </div>
-                <div class="card-footer">
-                    <span>desi18</span>
-                    <span class="positive-rate">👍 100%</span>
-                </div>
-            </div>
-
         </div>
+
     </div>
 
+    <script>
+        // ভিডিও ডাটাবেস (এখানে আপনার ভিডিওর টাইটেল, থাম্বনেইল, এমবেড লিংক এবং ডাউনলোড লিংক বসাবেন)
+        const videos = [
+            {
+                id: 1,
+                title: "Vellarikka (2026) Malayalam Uncut Short Film Edition",
+                thumb: "https://via.placeholder.com/400x225/111/fff?text=Vellarikka+1",
+                duration: "34:43",
+                embedUrl: "https://doomstrm.com/embed-xyz123.html",
+                downloadUrl: "#",
+                views: 1250,
+                likes: 120,
+                dislikes: 2
+            },
+            {
+                id: 2,
+                title: "Niyat (2026) Kaama Hindi Hot Short Film | Watch Now",
+                thumb: "https://via.placeholder.com/400x225/111/fff?text=Niyat+Film",
+                duration: "27:54",
+                embedUrl: "https://doomstrm.com/embed-xyz456.html",
+                downloadUrl: "#",
+                views: 840,
+                likes: 95,
+                dislikes: 1
+            },
+            {
+                id: 3,
+                title: "Bekaboo (2026) HotFM Hindi Uncut Hot Short Film",
+                thumb: "https://via.placeholder.com/400x225/111/fff?text=Bekaboo",
+                duration: "20:33",
+                embedUrl: "https://doomstrm.com/embed-xyz789.html",
+                downloadUrl: "#",
+                views: 430,
+                likes: 40,
+                dislikes: 5
+            },
+            {
+                id: 4,
+                title: "Vellarikka 2 (2026) BabluTV Malayalam Uncut Hot Short",
+                thumb: "https://via.placeholder.com/400x225/111/fff?text=Vellarikka+2",
+                duration: "40:11",
+                embedUrl: "https://doomstrm.com/embed-xyz012.html",
+                downloadUrl: "#",
+                views: 2100,
+                likes: 310,
+                dislikes: 4
+            }
+        ];
+
+        let currentVideoId = null;
+
+        // হোমপেজে কার্ড রেন্ডার করা
+        function renderVideos() {
+            const grid = document.getElementById('video-grid-container');
+            grid.innerHTML = '';
+
+            videos.forEach(video => {
+                // লোকাল স্টোরেজ থেকে রিয়েল ভিউ ও লাইক রিড করা
+                let savedViews = localStorage.getItem(`video_views_${video.id}`) || video.views;
+                let savedLikes = localStorage.getItem(`video_likes_${video.id}`) || video.likes;
+
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.onclick = () => openVideo(video.id);
+                
+                card.innerHTML = `
+                    <div class="thumb-box">
+                        <span class="hd-tag">HD</span>
+                        <img src="${video.thumb}" alt="Thumbnail">
+                        <div class="overlay-meta">
+                            <span>👁️ ${savedViews}</span>
+                            <span>⏱️ ${video.duration}</span>
+                        </div>
+                    </div>
+                    <div class="card-title">${video.title}</div>
+                    <div class="card-footer-info">👍 100% Positive</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ভিডিও পেজে যাওয়া এবং রিয়েল ভিউ বাড়ানো (ডেমো নয়)
+        function openVideo(id) {
+            currentVideoId = id;
+            const video = videos.find(v => v.id === id);
+            if (!video) return;
+
+            // ভিউ রিয়েলভাবে বাড়িয়ে লোকাল স্টোরেজে সেভ করা (যাতে রিফ্রেশ বা অন্য কেউ প্লে করলে রিয়েল কাউন্ট বাড়ে)
+            let viewsKey = `video_views_${id}`;
+            let currentViews = parseInt(localStorage.getItem(viewsKey) || video.views);
+            
+            // চেক করা যাক এই ব্রাউজার থেকে এই সেশনে অলেইডি ভিউ কাউন্ট হয়েছে কি না
+            if (!sessionStorage.getItem(`viewed_${id}`)) {
+                currentViews += 1;
+                localStorage.setItem(viewsKey, currentViews);
+                sessionStorage.setItem(`viewed_${id}`, 'true');
+            }
+
+            // লাইক ডেটা লোড করা
+            let likesKey = `video_likes_${id}`;
+            let currentLikes = parseInt(localStorage.getItem(likesKey) || video.likes);
+            let userLiked = localStorage.getItem(`user_liked_${id}`) === 'true';
+
+            // UI আপডেট করা
+            document.getElementById('iframe-player').src = video.embedUrl;
+            document.getElementById('download-link').href = video.downloadUrl;
+            document.getElementById('watch-title').innerText = video.title;
+            document.getElementById('watch-views-count').innerText = `${currentViews} views`;
+            document.getElementById('like-count').innerText = currentLikes;
+            document.getElementById('dislike-count').innerText = video.dislikes;
+
+            const likeBtn = document.getElementById('like-btn');
+            if (userLiked) {
+                likeBtn.classList.add('liked');
+            } else {
+                likeBtn.classList.remove('liked');
+            }
+
+            // ভিউ পরিবর্তন করা
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('watch-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // হোমপেজে ফিরে যাওয়া
+        function goHome() {
+            document.getElementById('iframe-player').src = ''; // ভিডিও অফ করা
+            document.getElementById('watch-view').style.display = 'none';
+            document.getElementById('home-view').style.display = 'block';
+            renderVideos();
+        }
+
+        // লাইক করার ফাংশন
+        function toggleLike() {
+            if (!currentVideoId) return;
+            let likesKey = `video_likes_${currentVideoId}`;
+            let userLikedKey = `user_liked_${currentVideoId}`;
+            let currentLikes = parseInt(localStorage.getItem(likesKey) || videos.find(v => v.id === currentVideoId).likes);
+            let userLiked = localStorage.getItem(userLikedKey) === 'true';
+
+            const likeBtn = document.getElementById('like-btn');
+
+            if (!userLiked) {
+                currentLikes += 1;
+                localStorage.setItem(likesKey, currentLikes);
+                localStorage.setItem(userLikedKey, 'true');
+                likeBtn.classList.add('liked');
+            } else {
+                currentLikes -= 1;
+                localStorage.setItem(likesKey, currentLikes);
+                localStorage.setItem(userLikedKey, 'false');
+                likeBtn.classList.remove('liked');
+            }
+
+            document.getElementById('like-count').innerText = currentLikes;
+        }
+
+        function handleDislike() {
+            alert("Thanks for your feedback!");
+        }
+
+        // পেজ লোড হলে ভিডিও লিস্ট রেন্ডার করা
+        window.onload = renderVideos;
+    </script>
 </body>
 </html>

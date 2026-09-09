@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>desi18.com - Video Stream</title>
+    <title>desi18.com - Premium Video Stream</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131826;
-            --accent: #00d2ff;
-            --accent-gradient: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
-            --download-btn-bg: linear-gradient(135deg, #ff416c, #ff4b2b);
+            --bg-color: #0f111a;
+            --card-bg: #181c29;
+            --accent: #00e5ff;
+            --download-gradient: linear-gradient(135deg, #7928ca, #ff0080);
             --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
+            --text-muted: #8c9bae;
+            --border: #22293d;
         }
 
         * {
@@ -26,10 +25,10 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
 
-        /* Header */
+        /* Top Header */
         header {
             background-color: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -47,11 +46,12 @@
             font-weight: 800;
             color: var(--accent);
             cursor: pointer;
+            letter-spacing: 0.5px;
         }
 
         .search-box {
             display: flex;
-            background: #090d16;
+            background: #0b0d14;
             border: 1px solid var(--border);
             border-radius: 20px;
             overflow: hidden;
@@ -84,7 +84,7 @@
             padding: 0 10px;
         }
 
-        /* Home Page View */
+        /* Home View */
         #home-view {
             display: block;
         }
@@ -153,7 +153,7 @@
             right: 5px;
             display: flex;
             justify-content: space-between;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(15, 17, 26, 0.85);
             padding: 2px 6px;
             border-radius: 3px;
             font-size: 10px;
@@ -172,22 +172,22 @@
         }
 
         .card-footer-info {
-            background: #0d121d;
+            background: #11141f;
             padding: 5px 8px;
             font-size: 11px;
-            color: #10b981;
+            color: #00e676;
             text-align: center;
             border-top: 1px solid var(--border);
         }
 
-        /* Watch Page View */
+        /* Watch View */
         #watch-view {
             display: none;
         }
 
         .back-btn {
             display: inline-block;
-            background: #1e293b;
+            background: #22293d;
             color: #fff;
             padding: 6px 12px;
             border-radius: 4px;
@@ -207,23 +207,23 @@
             margin-bottom: 12px;
         }
 
-        /* Unique Download Button Design (Screenshot 3 Style) */
+        /* Unique Styled Download Button (Purple-Pink Gradient with Custom Icon) */
         .download-action-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            background: var(--download-btn-bg);
+            background: var(--download-gradient);
             color: white;
             text-align: center;
-            padding: 12px;
+            padding: 13px;
             font-size: 15px;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+            box-shadow: 0 4px 20px rgba(255, 0, 128, 0.35);
             transition: 0.2s;
         }
 
@@ -242,7 +242,7 @@
         }
 
         .watch-meta-bar {
-            background: #131826;
+            background: var(--card-bg);
             padding: 10px 14px;
             border-radius: 6px;
             display: flex;
@@ -255,29 +255,30 @@
 
         .interaction-group {
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
         .action-chip {
-            background: #1e293b;
+            background: #22293d;
             border: none;
             color: #fff;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             transition: 0.2s;
         }
 
         .action-chip:hover {
-            background: #334155;
+            background: #323d5a;
         }
 
+        /* Active/Liked State Style */
         .action-chip.liked {
-            background: #10b981;
+            background: #00e676;
             color: #000;
             font-weight: bold;
         }
@@ -295,7 +296,7 @@
 
     <div class="container">
         
-        <!-- HOME PAGE LIST -->
+        <!-- HOME PAGE -->
         <div id="home-view">
             <div class="section-bar">
                 <span>Latest Videos</span>
@@ -303,7 +304,7 @@
             </div>
 
             <div class="video-grid" id="video-grid-container">
-                <!-- JavaScript দিয়ে ভিডিও কার্ড এখানে ডাইনামিক লোড হবে -->
+                <!-- ডাইনামিক ভিডিও লিস্ট এখানে লোড হবে -->
             </div>
         </div>
 
@@ -315,9 +316,9 @@
                 <iframe id="iframe-player" src="" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
             </div>
 
-            <!-- Custom Styled Download Button -->
+            <!-- Custom Download Button with Unique Icon & Gradient -->
             <a id="download-link" href="#" target="_blank" class="download-action-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m0 0l-5-5m5 5l5-5M4 19h16"/></svg>
                 Download complete video now!
             </a>
 
@@ -341,7 +342,7 @@
     </div>
 
     <script>
-        // ভিডিও ডাটাবেস (এখানে আপনার ভিডিওর টাইটেল, থাম্বনেইল, এমবেড লিংক এবং ডাউনলোড লিংক বসাবেন)
+        // ভিডিও তালিকা (এখানে আপনার ভিডিওর তথ্য ও লিংক বসাবেন)
         const videos = [
             {
                 id: 1,
@@ -350,8 +351,8 @@
                 duration: "34:43",
                 embedUrl: "https://doomstrm.com/embed-xyz123.html",
                 downloadUrl: "#",
-                views: 1250,
-                likes: 120,
+                baseViews: 1250,
+                baseLikes: 120,
                 dislikes: 2
             },
             {
@@ -361,8 +362,8 @@
                 duration: "27:54",
                 embedUrl: "https://doomstrm.com/embed-xyz456.html",
                 downloadUrl: "#",
-                views: 840,
-                likes: 95,
+                baseViews: 840,
+                baseLikes: 95,
                 dislikes: 1
             },
             {
@@ -372,8 +373,8 @@
                 duration: "20:33",
                 embedUrl: "https://doomstrm.com/embed-xyz789.html",
                 downloadUrl: "#",
-                views: 430,
-                likes: 40,
+                baseViews: 430,
+                baseLikes: 40,
                 dislikes: 5
             },
             {
@@ -383,13 +384,13 @@
                 duration: "40:11",
                 embedUrl: "https://doomstrm.com/embed-xyz012.html",
                 downloadUrl: "#",
-                views: 2100,
-                likes: 310,
+                baseViews: 2100,
+                baseLikes: 310,
                 dislikes: 4
             }
         ];
 
-        let currentVideoId = null;
+        let activeVideoId = null;
 
         // হোমপেজে কার্ড রেন্ডার করা
         function renderVideos() {
@@ -397,9 +398,11 @@
             grid.innerHTML = '';
 
             videos.forEach(video => {
-                // লোকাল স্টোরেজ থেকে রিয়েল ভিউ ও লাইক রিড করা
-                let savedViews = localStorage.getItem(`video_views_${video.id}`) || video.views;
-                let savedLikes = localStorage.getItem(`video_likes_${video.id}`) || video.likes;
+                let viewsKey = `desi18_views_${video.id}`;
+                let likesKey = `desi18_likes_${video.id}`;
+
+                let totalViews = parseInt(localStorage.getItem(viewsKey)) || video.baseViews;
+                let totalLikes = parseInt(localStorage.getItem(likesKey)) || video.baseLikes;
 
                 const card = document.createElement('div');
                 card.className = 'video-card';
@@ -410,7 +413,7 @@
                         <span class="hd-tag">HD</span>
                         <img src="${video.thumb}" alt="Thumbnail">
                         <div class="overlay-meta">
-                            <span>👁️ ${savedViews}</span>
+                            <span>👁️ ${totalViews}</span>
                             <span>⏱️ ${video.duration}</span>
                         </div>
                     </div>
@@ -421,29 +424,29 @@
             });
         }
 
-        // ভিডিও পেজে যাওয়া এবং রিয়েল ভিউ বাড়ানো (ডেমো নয়)
+        // ভিডিও ওপেন এবং রিয়েল ভিউ কাউন্ট সিস্টেম
         function openVideo(id) {
-            currentVideoId = id;
+            activeVideoId = id;
             const video = videos.find(v => v.id === id);
             if (!video) return;
 
-            // ভিউ রিয়েলভাবে বাড়িয়ে লোকাল স্টোরেজে সেভ করা (যাতে রিফ্রেশ বা অন্য কেউ প্লে করলে রিয়েল কাউন্ট বাড়ে)
-            let viewsKey = `video_views_${id}`;
-            let currentViews = parseInt(localStorage.getItem(viewsKey) || video.views);
-            
-            // চেক করা যাক এই ব্রাউজার থেকে এই সেশনে অলেইডি ভিউ কাউন্ট হয়েছে কি না
-            if (!sessionStorage.getItem(`viewed_${id}`)) {
+            let viewsKey = `desi18_views_${id}`;
+            let sessionViewKey = `viewed_session_${id}`;
+            let currentViews = parseInt(localStorage.getItem(viewsKey)) || video.baseViews;
+
+            // শুধুমাত্র একবারই রিয়েল ভিউ বাড়বে (রিফ্রেশ করলে ডেমো বা ডাবল ভিউ হবে না)
+            if (!sessionStorage.getItem(sessionViewKey)) {
                 currentViews += 1;
                 localStorage.setItem(viewsKey, currentViews);
-                sessionStorage.setItem(`viewed_${id}`, 'true');
+                sessionStorage.setItem(sessionViewKey, 'true');
             }
 
-            // লাইক ডেটা লোড করা
-            let likesKey = `video_likes_${id}`;
-            let currentLikes = parseInt(localStorage.getItem(likesKey) || video.likes);
-            let userLiked = localStorage.getItem(`user_liked_${id}`) === 'true';
+            let likesKey = `desi18_likes_${id}`;
+            let userLikedKey = `user_liked_status_${id}`;
+            let currentLikes = parseInt(localStorage.getItem(likesKey)) || video.baseLikes;
+            let hasLiked = localStorage.getItem(userLikedKey) === 'true';
 
-            // UI আপডেট করা
+            // UI আপডেট
             document.getElementById('iframe-player').src = video.embedUrl;
             document.getElementById('download-link').href = video.downloadUrl;
             document.getElementById('watch-title').innerText = video.title;
@@ -452,42 +455,45 @@
             document.getElementById('dislike-count').innerText = video.dislikes;
 
             const likeBtn = document.getElementById('like-btn');
-            if (userLiked) {
+            if (hasLiked) {
                 likeBtn.classList.add('liked');
             } else {
                 likeBtn.classList.remove('liked');
             }
 
-            // ভিউ পরিবর্তন করা
             document.getElementById('home-view').style.display = 'none';
             document.getElementById('watch-view').style.display = 'block';
             window.scrollTo(0, 0);
         }
 
-        // হোমপেজে ফিরে যাওয়া
+        // হোম পেজে ফিরে যাওয়া
         function goHome() {
-            document.getElementById('iframe-player').src = ''; // ভিডিও অফ করা
+            document.getElementById('iframe-player').src = '';
             document.getElementById('watch-view').style.display = 'none';
             document.getElementById('home-view').style.display = 'block';
             renderVideos();
         }
 
-        // লাইক করার ফাংশন
+        // একজন ইউজার শুধুমাত্র একবার লাইক দিতে পারবে (টগল সিস্টেম)
         function toggleLike() {
-            if (!currentVideoId) return;
-            let likesKey = `video_likes_${currentVideoId}`;
-            let userLikedKey = `user_liked_${currentVideoId}`;
-            let currentLikes = parseInt(localStorage.getItem(likesKey) || videos.find(v => v.id === currentVideoId).likes);
-            let userLiked = localStorage.getItem(userLikedKey) === 'true';
+            if (!activeVideoId) return;
 
+            let likesKey = `desi18_likes_${activeVideoId}`;
+            let userLikedKey = `user_liked_status_${activeVideoId}`;
+            
+            let video = videos.find(v => v.id === activeVideoId);
+            let currentLikes = parseInt(localStorage.getItem(likesKey)) || video.baseLikes;
+            let hasLiked = localStorage.getItem(userLikedKey) === 'true';
             const likeBtn = document.getElementById('like-btn');
 
-            if (!userLiked) {
+            if (!hasLiked) {
+                // লাইক যোগ হবে
                 currentLikes += 1;
                 localStorage.setItem(likesKey, currentLikes);
                 localStorage.setItem(userLikedKey, 'true');
                 likeBtn.classList.add('liked');
             } else {
+                // লাইক তুলে নেওয়া হবে (আগের অবস্থায় ফিরে যাবে)
                 currentLikes -= 1;
                 localStorage.setItem(likesKey, currentLikes);
                 localStorage.setItem(userLikedKey, 'false');
@@ -501,7 +507,7 @@
             alert("Thanks for your feedback!");
         }
 
-        // পেজ লোড হলে ভিডিও লিস্ট রেন্ডার করা
+        // পেজ লোড হলে রান হবে
         window.onload = renderVideos;
     </script>
 </body>

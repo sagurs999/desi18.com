@@ -3,82 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>desi18.com - Latest Videos</title>
-    <link rel="stylesheet" href="style.css">
+    <title>desi18.com - Premium Video Stream</title>
+    <style>
+        :root {
+            --bg-color: #0f1015;
+            --card-bg: #1a1c23;
+            --accent: #ff3366;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border: #2a2e39;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 30px;
+        }
+
+        /* Top Header Navigation */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+
+        .search-box {
+            display: flex;
+            background: #111318;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 55%;
+            max-width: 280px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 6px 12px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            padding: 0 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 16px auto;
+            padding: 0 10px;
+        }
+
+        .section-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            background: var(--card-bg);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .section-title-bar h2 {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn {
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(255, 51, 102, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        /* Modern 2-Column Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .video-card:active {
+            transform: scale(0.98);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hd-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .video-meta-overlay {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            right: 6px;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(15, 16, 21, 0.85);
+            backdrop-filter: blur(4px);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 34px;
+        }
+
+        .card-footer {
+            padding: 6px 10px;
+            background: #14161c;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .positive-rate {
+            color: #10b981;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">⚡ desi18.com</div>
-        <div class="search-bar">
+    <!-- Header Section -->
+    <header>
+        <div class="logo">desi18.com</div>
+        <div class="search-box">
             <input type="text" placeholder="Search videos...">
             <button>🔍</button>
         </div>
-    </nav>
+    </header>
 
+    <!-- Content Section -->
     <div class="container">
-        <div class="section-header">
-            <h2>Latest videos</h2>
-            <div class="dropdown-label">Latest videos ▼</div>
+        <div class="section-title-bar">
+            <h2>Latest Videos</h2>
+            <div class="filter-btn">Trending ▼</div>
         </div>
 
-        <!-- 2 Column Video Grid -->
         <div class="video-grid">
             
-            <!-- Video 1 -->
+            <!-- Video Item 1 -->
             <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-wrapper">
-                    <span class="badge-hd">HD</span>
-                    <img src="https://via.placeholder.com/400x225/222/fff?text=Thumbnail+1" alt="Thumbnail">
-                    <div class="video-stats">
-                        <span>👁️ 5K</span>
+                <div class="thumbnail-container">
+                    <span class="hd-badge">HD</span>
+                    <!-- থাম্বনেইল ইমেজ লিংক এখানে বদলাবেন -->
+                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+1" alt="Thumbnail">
+                    <div class="video-meta-overlay">
+                        <span>👁️ 5.2K</span>
                         <span>⏱️ 34:43</span>
                     </div>
                 </div>
-                <div class="video-title">Vellarikka 1 (2026) BabluTV Malayalam Uncut Hot Short</div>
-                <div class="like-bar">👍 100%</div>
+                <div class="video-info">
+                    <div class="video-title">Vellarikka (2026) Malayalam Uncut Short Film Edition</div>
+                </div>
+                <div class="card-footer">
+                    <span>desi18</span>
+                    <span class="positive-rate">👍 100%</span>
+                </div>
             </div>
 
-            <!-- Video 2 -->
+            <!-- Video Item 2 -->
             <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-wrapper">
-                    <span class="badge-hd">HD</span>
-                    <img src="https://via.placeholder.com/400x225/222/fff?text=Thumbnail+2" alt="Thumbnail">
-                    <div class="video-stats">
-                        <span>👁️ 3K</span>
-                        <span>⏱️ 27:54</span>
+                <div class="thumbnail-container">
+                    <span class="hd-badge">HD</span>
+                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+2" alt="Thumbnail">
+                    <div class="video-meta-overlay">
+                        <span>👁️ 3.8K</span>
+                        <span>⏱️ 27:50</span>
                     </div>
                 </div>
-                <div class="video-title">Niyat (2026) Kaama Hindi Hot Short Film | Watch Now</div>
-                <div class="like-bar">👍 100%</div>
+                <div class="video-info">
+                    <div class="video-title">Niyat (2026) Kaama Hindi Hot Short Film | Watch Now</div>
+                </div>
+                <div class="card-footer">
+                    <span>desi18</span>
+                    <span class="positive-rate">👍 98%</span>
+                </div>
             </div>
 
-            <!-- Video 3 -->
+            <!-- Video Item 3 -->
             <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-wrapper">
-                    <span class="badge-hd">HD</span>
-                    <img src="https://via.placeholder.com/400x225/222/fff?text=Thumbnail+3" alt="Thumbnail">
-                    <div class="video-stats">
-                        <span>👁️ 1K</span>
-                        <span>⏱️ 20:33</span>
+                <div class="thumbnail-container">
+                    <span class="hd-badge">HD</span>
+                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+3" alt="Thumbnail">
+                    <div class="video-meta-overlay">
+                        <span>👁️ 1.2K</span>
+                        <span>⏱️ 20:15</span>
                     </div>
                 </div>
-                <div class="video-title">Bekaboo (2026) HotFM Hindi Uncut Hot Short Film | Watch Now</div>
-                <div class="like-bar">👍 0%</div>
+                <div class="video-info">
+                    <div class="video-title">Bekaboo (2026) HotFM Hindi Uncut Hot Short Film</div>
+                </div>
+                <div class="card-footer">
+                    <span>desi18</span>
+                    <span class="positive-rate" style="color: #ef4444;">👍 45%</span>
+                </div>
             </div>
 
-            <!-- Video 4 -->
+            <!-- Video Item 4 -->
             <div class="video-card" onclick="location.href='watch.html';">
-                <div class="thumbnail-wrapper">
-                    <span class="badge-hd">HD</span>
-                    <img src="https://via.placeholder.com/400x225/222/fff?text=Thumbnail+4" alt="Thumbnail">
-                    <div class="video-stats">
-                        <span>👁️ 6K</span>
-                        <span>⏱️ 40:11</span>
+                <div class="thumbnail-container">
+                    <span class="hd-badge">HD</span>
+                    <img src="https://via.placeholder.com/400x225/111/fff?text=Video+4" alt="Thumbnail">
+                    <div class="video-meta-overlay">
+                        <span>👁️ 6.5K</span>
+                        <span>⏱️ 40:10</span>
                     </div>
                 </div>
-                <div class="video-title">Vellarikka 2 (2026) BabluTV Malayalam Uncut Hot Short</div>
-                <div class="like-bar">👍 100%</div>
+                <div class="video-info">
+                    <div class="video-title">Vellarikka 2 (2026) BabluTV Malayalam Uncut Hot Short</div>
+                </div>
+                <div class="card-footer">
+                    <span>desi18</span>
+                    <span class="positive-rate">👍 100%</span>
+                </div>
             </div>
 
         </div>

@@ -9,23 +9,33 @@
 <body>
 
     <nav>
-        <div class="logo" onclick="location.href='index.html';" style="cursor: pointer;">⚡ ModernStream</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search videos...">
-            <button>🔍</button>
+        <div class="search-container" style="width: 100%; max-width: 600px; margin: 0 auto;">
+            <input type="text" placeholder="Search..." style="width: 100%; background: #2c2c2c; border: none; padding: 10px; color: #fff; outline: none;">
+            <button style="background: #00bcd4; border: none; padding: 0 15px; cursor: pointer;">🔍</button>
         </div>
     </nav>
 
     <div class="watch-container">
+        
+        <!-- VIDEO URL / IFRAME PLACEHOLDER (এখানে আপনার Doomstrm বা Lulu Stream এর Iframe কোড বসাবেন) -->
         <div class="video-player-box">
             <iframe src="https://doomstrm.com/embed-xyz123.html" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
         </div>
+
+        <!-- Download Complete Video Button -->
         <a href="#" class="download-btn">⬇️ Download complete video now!</a>
+
+        <!-- Video Title Box (এখানে ভিডিওর টাইটেল বসাবেন) -->
         <div class="video-info-card">
             Joggers Park – E04 (2026) Atrangii Hindi Hot Web Series | Watch Now
         </div>
+
+        <!-- Views and Rating Meta -->
+        <div class="video-meta">
+            <span>0 views</span>
+            <span>👍 0 &nbsp;&nbsp; 👎 0</span>
+        </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
